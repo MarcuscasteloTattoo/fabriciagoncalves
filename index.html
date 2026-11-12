@@ -347,8 +347,8 @@ footer .copy { margin-top: 2rem; }
 
 <header class="hero">
   <nav class="lang" data-a="aria-label:langAria" aria-label="Idioma">
-    <button type="button" data-lang="pt" aria-pressed="true" title="Português"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#009C3B"/><path d="M15 2.2 27.6 10 15 17.8 2.4 10Z" fill="#FFDF00"/><circle cx="15" cy="10" r="4.3" fill="#002776"/><path d="M10.9 9.1c2.7-.6 5.6-.2 8.2 1.4" stroke="#fff" stroke-width=".7" fill="none"/></svg>PT</button>
-    <button type="button" data-lang="en" aria-pressed="false" title="English"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#B22234"/><g fill="#fff"><rect y="1.54" width="30" height="1.54"/><rect y="4.62" width="30" height="1.54"/><rect y="7.69" width="30" height="1.54"/><rect y="10.77" width="30" height="1.54"/><rect y="13.85" width="30" height="1.54"/><rect y="16.92" width="30" height="1.54"/></g><rect width="12" height="10.77" fill="#3C3B6E"/></svg>EN</button>
+    <button type="button" data-lang="en" aria-pressed="true" title="English"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#B22234"/><g fill="#fff"><rect y="1.54" width="30" height="1.54"/><rect y="4.62" width="30" height="1.54"/><rect y="7.69" width="30" height="1.54"/><rect y="10.77" width="30" height="1.54"/><rect y="13.85" width="30" height="1.54"/><rect y="16.92" width="30" height="1.54"/></g><rect width="12" height="10.77" fill="#3C3B6E"/></svg>EN</button>
+    <button type="button" data-lang="pt" aria-pressed="false" title="Português"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#009C3B"/><path d="M15 2.2 27.6 10 15 17.8 2.4 10Z" fill="#FFDF00"/><circle cx="15" cy="10" r="4.3" fill="#002776"/><path d="M10.9 9.1c2.7-.6 5.6-.2 8.2 1.4" stroke="#fff" stroke-width=".7" fill="none"/></svg>PT</button>
     <button type="button" data-lang="es" aria-pressed="false" title="Español"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#AA151B"/><rect y="5" width="30" height="10" fill="#F1BF00"/></svg>ES</button>
   </nav>
   <img class="hero-img" src="assets/banner-fabricia-2.webp" srcset="assets/banner-fabricia-2-800.webp 800w, assets/banner-fabricia-2.webp 1080w" sizes="(min-width: 768px) 56vw, 100vw" width="1080" height="1080" fetchpriority="high" decoding="async" data-a="alt:heroAlt" alt="Retrato de Fabricia Gonçalves de regata branca, com tatuagens no pescoço e nos braços, sobre fundo escuro">
@@ -728,7 +728,7 @@ function setLang(code, first) {
 }
 document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
 /* abre em português; ?lang=en ou ?lang=es no endereço já abre no idioma */
-setLang((location.search.match(/[?&]lang=(pt|en|es)\b/) || [])[1] || "pt", true);
+setLang((location.search.match(/[?&]lang=(pt|en|es)\b/) || [])[1] || "en", true);
 $("year").textContent = new Date().getFullYear();
 
 /* --- carrossel de projetos: contínuo, pausa no hover, arrasto e setas --- */
