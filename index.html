@@ -136,7 +136,6 @@ img { max-width: 100%; display: block; }
 @media (min-width: 768px) { #portfolio { padding-top: 4.2rem; } }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
 @media (min-width: 768px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; } }
-@media (max-width: 767px) { .pf:first-child { grid-column: 1 / -1; } .pf:first-child .ph { aspect-ratio: 3 / 2; } }
 .pf { display: block; padding: 0; border: 0; background: none; border-radius: .75rem; overflow: hidden; cursor: zoom-in; }
 .pf .ph { border-radius: .75rem; transition: transform .3s ease; }
 .pf:hover .ph { transform: scale(1.04); }
@@ -527,7 +526,7 @@ const site = {
     { tipo: "Award", ano: "2022", titulo: "Ink The Bay Tattoo Convention", texto: "Award-winning work in Dotwork, Lettering and Geometric.", img: "07_ink_the_bay_award_2022", pos: "50% 35%", alt: "Fabricia Gonçalves with medals and the Best Dot Work 2nd place plaque at Ink The Bay 2022" },
   ],
   /* portfólio — descrições em TXT.*.portfolio, na mesma ordem (cada foto tem uma versão "-480" para celular) */
-  portfolio: Array.from({ length: 9 }, (_, i) => `assets/portfolio/pf-${String(i + 1).padStart(2, "0")}.webp`),
+  portfolio: Array.from({ length: 6 }, (_, i) => `assets/portfolio/pf-${String(i + 1).padStart(2, "0")}.webp`),
 };
 
 /* ============ TEXTOS (PT / EN / ES) ============
@@ -549,14 +548,11 @@ const TXT = {
       ["Freestyle vermelho e preto", "Olho, cerejeiras e corvos com pinceladas vermelhas e pretas no antebraço.", "Antebraço em freestyle vermelho e preto com olho, cerejeiras e corvos"],
     ],
     portfolio: [
-      "Costas fechadas com mandalas geométricas em pontilhismo e peônias em preto e cinza",
       "Perna em realismo preto e cinza com Zeus, Pégaso, serpente e rosto feminino",
-      "Braço fechado em freestyle com flores e pinceladas vermelhas",
-      "Caveira sobre livros com rosas, espinhos e adaga nas costas",
       "Braço fechado geométrico em pontilhismo com flor da vida e detalhes em vermelho",
-      "Olhos de tigre em realismo com íris vermelhas no antebraço",
+      "Braço fechado em freestyle com flores e pinceladas vermelhas",
       "Lírio vermelho em estilo aquarela no antebraço",
-      "Caveira em realismo emoldurada por mandala geométrica na panturrilha",
+      "Olhos de tigre em realismo com íris vermelhas no antebraço",
       "Ombro geométrico com mandala e hexágonos em pontilhismo",
     ],
     t: {}, a: {}, /* lidos da própria página */
@@ -577,14 +573,11 @@ const TXT = {
       ["Red & black freestyle", "An eye, cherry blossoms and crows with red and black brushstrokes on the forearm.", "Red and black freestyle forearm with an eye, cherry blossoms and crows"],
     ],
     portfolio: [
-      "Full back piece with dotwork geometric mandalas and black and grey peonies",
       "Black and grey realism leg with Zeus, Pegasus, a snake and a woman's face",
-      "Freestyle full sleeve with flowers and red brushstrokes",
-      "Skull on books with roses, thorns and a dagger on the back",
       "Dotwork geometric full sleeve with flower of life and red details",
-      "Realistic tiger eyes with red irises on the forearm",
+      "Freestyle full sleeve with flowers and red brushstrokes",
       "Watercolor-style red lily on the forearm",
-      "Realistic skull framed by a geometric mandala on the calf",
+      "Realistic tiger eyes with red irises on the forearm",
       "Geometric shoulder piece with a mandala and dotwork hexagons",
     ],
     t: {
@@ -626,14 +619,11 @@ const TXT = {
       ["Freestyle rojo y negro", "Ojo, cerezos y cuervos con pinceladas rojas y negras en el antebrazo.", "Antebrazo en freestyle rojo y negro con ojo, cerezos y cuervos"],
     ],
     portfolio: [
-      "Espalda completa con mandalas geométricos en puntillismo y peonías en negro y gris",
       "Pierna en realismo negro y gris con Zeus, Pegaso, serpiente y rostro femenino",
-      "Manga completa en freestyle con flores y pinceladas rojas",
-      "Calavera sobre libros con rosas, espinas y daga en la espalda",
       "Manga geométrica en puntillismo con flor de la vida y detalles en rojo",
-      "Ojos de tigre en realismo con iris rojos en el antebrazo",
+      "Manga completa en freestyle con flores y pinceladas rojas",
       "Lirio rojo estilo acuarela en el antebrazo",
-      "Calavera en realismo enmarcada por mandala geométrico en la pantorrilla",
+      "Ojos de tigre en realismo con iris rojos en el antebrazo",
       "Hombro geométrico con mandala y hexágonos en puntillismo",
     ],
     t: {
