@@ -792,12 +792,28 @@ $("year").textContent = new Date().getFullYear();
   io.observe(box);
 })();
 
-/* --- botões "Solicitar orçamento": rolagem suave até o formulário --- */
+/* --- botões "Solicitar orçamento": a página rola visivelmente até o formulário --- */
+function rolarAte(el, done) {
+  const inicio = window.scrollY, alvo = el.getBoundingClientRect().top + inicio, dist = alvo - inicio;
+  if (reduced || Math.abs(dist) < 4) { window.scrollTo(0, alvo); return done && done(); }
+  const dur = Math.min(1600, Math.max(900, Math.abs(dist) * 0.45)), t0 = performance.now();
+  const ease = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  let parar = false;
+  const cancelar = () => { parar = true; };
+  ["wheel", "touchstart", "keydown"].forEach((ev) => window.addEventListener(ev, cancelar, { once: true, passive: true }));
+  const html = document.documentElement, antes = html.style.scrollBehavior;
+  html.style.scrollBehavior = "auto";
+  (function passo(agora) {
+    if (parar) { html.style.scrollBehavior = antes; return; }
+    const t = Math.min(1, (agora - t0) / dur);
+    window.scrollTo(0, inicio + dist * ease(t));
+    if (t < 1) requestAnimationFrame(passo);
+    else { html.style.scrollBehavior = antes; ["wheel", "touchstart", "keydown"].forEach((ev) => window.removeEventListener(ev, cancelar)); done && done(); }
+  })(t0);
+}
 document.querySelectorAll(".cta-jump").forEach((a) => a.addEventListener("click", (e) => {
   e.preventDefault();
-  const alvo = $("orcamento");
-  alvo.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-  setTimeout(() => { const q = document.querySelector("#lead-form .qf-step:not([hidden]) .qf-q"); if (q) q.focus({ preventScroll: true }); }, reduced ? 0 : 700);
+  rolarAte($("orcamento"), () => { const q = document.querySelector("#lead-form .qf-step:not([hidden]) .qf-q"); if (q) q.focus({ preventScroll: true }); });
 }));
 
 /* --- formulário de orçamento em etapas --- */
