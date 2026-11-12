@@ -207,6 +207,18 @@ img { max-width: 100%; display: block; }
 .btn-wa svg { width: 1.4rem; height: 1.4rem; flex: none; }
 @media (max-width: 440px) { .btn-wa { font-size: .85rem; letter-spacing: .03em; padding-inline: 1rem; } }
 
+/* ---------- BOTÃO "IR PARA O ORÇAMENTO" ---------- */
+.cta-wrap { margin-top: 2.5rem; text-align: center; }
+.cta-jump { display: inline-flex; align-items: center; gap: .55rem; padding: .8rem 1.5rem; border: 1px solid rgb(17 17 17 / .25); border-radius: 999px; color: var(--ink); font-size: .78rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: background .25s, color .25s, border-color .25s; }
+.cta-jump svg { width: 1rem; height: 1rem; color: var(--gold); transition: transform .25s, color .25s; }
+.cta-jump:hover, .cta-jump:focus-visible { background: var(--ink); border-color: var(--ink); color: #fff; }
+.cta-jump:hover svg { transform: translateY(2px); }
+.press-band .cta-jump { border-color: rgb(214 178 94 / .55); color: var(--gold); }
+.press-band .cta-jump svg { color: var(--gold); }
+.press-band .cta-jump:hover, .press-band .cta-jump:focus-visible { background: var(--gold); border-color: var(--gold); color: #111; }
+.press-band .cta-jump:hover svg { color: #111; }
+@media (prefers-reduced-motion: reduce) { .cta-jump, .cta-jump svg { transition: none; } }
+
 /* ---------- FORMULÁRIO EM ETAPAS ---------- */
 .qf { margin-top: 2rem; text-align: left; }
 .qf-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 1.75rem; }
@@ -365,6 +377,7 @@ footer .copy { margin-top: 2rem; }
 
   <section class="wrap section" id="portfolio" data-a="aria-label:portfolio" aria-label="Portfólio">
     <div class="grid" id="grid"></div>
+    <div class="cta-wrap"><a class="cta-jump" href="#orcamento"><span data-t="ctaOrc">Solicitar orçamento</span><svg aria-hidden="true"><use href="#i-down"/></svg></a></div>
   </section>
 
   <section class="wrap section" id="sobre">
@@ -379,6 +392,7 @@ footer .copy { margin-top: 2rem; }
         <a class="link" href="https://www.instagram.com/tattoosbyfg" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-ig"/></svg>@tattoosbyfg</a>
       </div>
     </div>
+    <div class="cta-wrap"><a class="cta-jump" href="#orcamento"><span data-t="ctaOrc">Solicitar orçamento</span><svg aria-hidden="true"><use href="#i-down"/></svg></a></div>
   </section>
 
   <section class="press-band" id="press" aria-labelledby="press-title">
@@ -390,6 +404,7 @@ footer .copy { margin-top: 2rem; }
         <button type="button" class="ctrl" id="press-prev" data-a="aria-label:pressAnt" aria-label="Anterior"><svg><use href="#i-left"/></svg></button>
         <button type="button" class="ctrl" id="press-next" data-a="aria-label:pressProx" aria-label="Próximo"><svg><use href="#i-right"/></svg></button>
       </div>
+      <div class="cta-wrap"><a class="cta-jump" href="#orcamento"><span data-t="ctaOrc">Solicitar orçamento</span><svg aria-hidden="true"><use href="#i-down"/></svg></a></div>
     </div>
   </section>
 
@@ -581,6 +596,7 @@ const TXT = {
       "Geometric shoulder piece with a mandala and dotwork hexagons",
     ],
     t: {
+      ctaOrc: "Get a quote",
       pressEyebrow: "Magazines · Interviews · Awards",
       pressTitulo: "Press &amp; Awards",
       h1: "Realism <span class=\"nw\">&amp; Expression</span>",
@@ -627,6 +643,7 @@ const TXT = {
       "Hombro geométrico con mandala y hexágonos en puntillismo",
     ],
     t: {
+      ctaOrc: "Solicitar presupuesto",
       pressEyebrow: "Revistas · Entrevistas · Premios",
       pressTitulo: "Prensa &amp; Premios",
       h1: "Realismo <span class=\"nw\">&amp; Expresión</span>",
@@ -775,7 +792,15 @@ $("year").textContent = new Date().getFullYear();
   io.observe(box);
 })();
 
-/* --- formulário de orçamento em etapas (em inglês) --- */
+/* --- botões "Solicitar orçamento": rolagem suave até o formulário --- */
+document.querySelectorAll(".cta-jump").forEach((a) => a.addEventListener("click", (e) => {
+  e.preventDefault();
+  const alvo = $("orcamento");
+  alvo.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+  setTimeout(() => { const q = document.querySelector("#lead-form .qf-step:not([hidden]) .qf-q"); if (q) q.focus({ preventScroll: true }); }, reduced ? 0 : 700);
+}));
+
+/* --- formulário de orçamento em etapas --- */
 (function () {
   const form = $("lead-form"), steps = [...form.querySelectorAll(".qf-step[data-step]")], total = steps.length;
   const back = $("qf-back"), count = $("qf-count"), bar = $("qf-bar");
